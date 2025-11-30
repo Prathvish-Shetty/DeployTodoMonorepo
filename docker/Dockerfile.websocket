@@ -1,5 +1,8 @@
 from oven/bun:1
 
+ARG DATABASE_URL="postgresql://postgres:root@localhost:5432/deploy_todo_monorepo"
+ENV DATABASE_URL=${DATABASE_URL}
+
 workdir /use/src/app
 
 copy ./packages ./packages
