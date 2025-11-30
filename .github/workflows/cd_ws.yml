@@ -25,5 +25,5 @@ jobs:
           context: .
           file: ./docker/Dockerfile.websocket
           push: true
-          tags: Prathvish-Shetty/deploy_todo_monorepo_websocket:${{github.sha}}
+          tags: prathvishs/deploy_todo_monorepo_websocket:${{github.sha}}
           # step to deploy this to a VM - k8, autoscaling group
