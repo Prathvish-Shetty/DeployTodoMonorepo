@@ -16,7 +16,8 @@ copy ./apps/backend ./apps/backend
 
 run bun install
 # run cd packages/db && bunx prisma prisma generate && cd ../..
-run bun run db:generate
+# run bun run db:generate
+RUN DATABASE_URL=$DATABASE_URL bun run db:generate
 expose 8080
 
 cmd ["bun", "run", "start:backend"]
