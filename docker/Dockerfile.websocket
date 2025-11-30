@@ -8,7 +8,7 @@ copy ./bun.lock ./bun.lock
 copy ./package.json ./package.json
 copy ./turbo.json ./turbo.json
 
-copy ./apps/ws ./apps/ws
+copy ./apps/websocket ./apps/websocket
 
 
 # copy . .
