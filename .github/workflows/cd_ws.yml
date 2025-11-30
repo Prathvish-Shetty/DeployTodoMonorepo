@@ -1,0 +1,29 @@
+# build the docker image
+# push the docker image to docker hub
+# ssh into our vm and start the new image
+
+name: Deploy a websocket
+on:
+  push:
+    branches: [main]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout the code
+        uses: actions/Checkout@v2
+      
+      - name: Docker login
+        uses: docker/login-action@v2
+        with: 
+          username: ${{secrets.DOCKERHUB_USERNAME}}
+          password: ${{secrets.DOCKERHUB_TOKEN}}
+
+      - name: Build and push
+        uses: docker/build-push-action@v4
+        with: 
+          context: .
+          file: ./docker/Dockerfile.websocket
+          push: true
+          tags: Prathvish-Shetty/deploy_todo_monorepo_websocket:${{github.sha}}
+          # step to deploy this to a VM - k8, autoscaling group

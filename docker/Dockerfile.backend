@@ -1,0 +1,22 @@
+from oven/bun:1
+
+workdir /use/src/app
+
+# copy . .
+copy ./packages ./packages
+copy ./bun.lock ./bun.lock
+
+copy ./package.json ./package.json
+copy ./turbo.json ./turbo.json
+
+copy ./apps/backend ./apps/backend
+
+
+# copy . .
+
+run bun install
+# run cd packages/db && bunx prisma prisma generate && cd ../..
+run bun run db:generate
+expose 8080
+
+cmd ["bun", "run", "start:backend"]

@@ -1,0 +1,25 @@
+from oven/bun:1
+
+workdir /use/src/app
+
+arg DATABASE_URL
+copy ./packages ./packages
+copy ./bun.lock ./bun.lock
+
+copy ./package.json ./package.json
+copy ./turbo.json ./turbo.json
+
+copy ./apps/web ./apps/web
+
+
+# copy . .
+
+run bun install
+# run cd packages/db && bunx prisma prisma generate && cd ../..
+run bun run db:generate
+run bun run build
+run DATABASE_URL=${DATABASE_URL} bun run build
+
+expose 3000
+
+cmd ["bun", "run", "start:web"]
