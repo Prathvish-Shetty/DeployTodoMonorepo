@@ -24,6 +24,8 @@ jobs:
         with: 
           context: .
           file: ./docker/Dockerfile.frontend
+          build-args: 
+            - DATABASE_URL=${{secrets.DATABASE_URL}}
           push: true
           tags: prathvishs/deploy_todo_monorepo_frontend:${{github.sha}}
           # step to deploy this to a VM - k8, autoscaling group
