@@ -38,4 +38,4 @@ jobs:
           # touch /home/runner/.ssh/known_hosts
           # echo "${{secrets.KNOWN_HOSTS}}" &> /home/runner/.ssh/known_hosts
           chmod 700 /home/runner/ssh_key
-          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.235.71.189 -t "sudo docker stop user_backend && sudo docker run --name user_backend -d -p 8080:8080 prathvishs/deploy_todo_monorepo_backend:${{github.sha}}"
+          ssh -o StrictHostKeyChecking=no -i ~/ssh_key ubuntu@13.235.71.189 -t "sudo docker stop user_backend || true && sudo docker rm user_backend || true && sudo docker run --name user_backend -d -p 8080:8080 prathvishs/deploy_todo_monorepo_backend:${{github.sha}}"
