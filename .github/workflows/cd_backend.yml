@@ -33,9 +33,9 @@ jobs:
       - name: Deploy to VM
         run: |
           echo "${{secrets.SSH_PRIVATE_KEY}}" &> ~/ssh_key
-          mkdir -p /home/runner/.ssh
-          ls home/runner/.ssh
-          touch /home/runner/.ssh/known_hosts
-          echo "${{secrets.KNOWN_HOSTS}}" &> /home/runner/.ssh/known_hosts
+          # mkdir -p /home/runner/.ssh
+          # ls home/runner/.ssh
+          # touch /home/runner/.ssh/known_hosts
+          # echo "${{secrets.KNOWN_HOSTS}}" &> /home/runner/.ssh/known_hosts
           chmod 700 /home/runner/ssh_key
           ssh -o StrictHostKeyChecking=no -i ~/ssh_key root@your.vm.ip.address -t "docker stop user_backend && docker run --name user_backend -d -p 8080:8080 prathvishs/deploy_todo_monorepo_backend:${{github.sha}}"
